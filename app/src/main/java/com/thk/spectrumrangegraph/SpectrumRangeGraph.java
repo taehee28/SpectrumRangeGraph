@@ -34,6 +34,7 @@ import androidx.core.content.res.ResourcesCompat;
  *
  * @author taehee28
  * @version 1.0.0 (2020-11-29)
+ * @see com.thk.spectrumrangegraph.Util
  */
 
 public class SpectrumRangeGraph extends View {
@@ -52,24 +53,24 @@ public class SpectrumRangeGraph extends View {
     private boolean showWarningText;
 
     // default values
-    private final int DEFAULT_MIN_VALUE = 0;
-    private final int DEFAULT_MAX_VALUE = 100;
-    private final int DEFAULT_GRAPH_HEIGHT = dpToPx(16);
-    private final int DEFAULT_TEXT_MARGIN_TOP = dpToPx(8);
-    private final int DEFAULT_TEXT_SIZE = dpToPx(10);
-    private final int DEFAULT_TEXT_COLOR = Color.BLACK;
-    private final String DEFAULT_WARNING_TEXT = "No Data.";
-    private final boolean DEFAULT_SHOW_WARNING_TEXT = false;
+    private final int DEFAULT_MIN_VALUE;
+    private final int DEFAULT_MAX_VALUE;
+    private final int DEFAULT_GRAPH_HEIGHT;
+    private final int DEFAULT_TEXT_MARGIN_TOP;
+    private final int DEFAULT_TEXT_SIZE;
+    private final int DEFAULT_TEXT_COLOR;
+    private final String DEFAULT_WARNING_TEXT;
+    private final boolean DEFAULT_SHOW_WARNING_TEXT;
 
     // padding to spectrum drawable for fit in rangeBox drawable
     private final int SPECTRUM_PADDING = dpToPx(3);
 
-    private Drawable d_spectrum;
-    private Drawable d_rangeBox;
-    private Drawable d_avgPointer;
-    private Rect rect_spectrum;
-    private Rect rect_rangeBox;
-    private Paint paint_text;
+    private final Drawable d_spectrum;
+    private final Drawable d_rangeBox;
+    private final Drawable d_avgPointer;
+    private final Rect rect_spectrum;
+    private final Rect rect_rangeBox;
+    private final Paint paint_text;
     
     {
         rect_spectrum = new Rect();
@@ -80,6 +81,15 @@ public class SpectrumRangeGraph extends View {
         d_spectrum = ResourcesCompat.getDrawable(getResources(), R.drawable.srg_bg_spectrum, null);
         d_rangeBox = ResourcesCompat.getDrawable(getResources(), R.drawable.svg_range_box, null);
         d_avgPointer = ResourcesCompat.getDrawable(getResources(), R.drawable.srg_avg_pointer, null);
+
+        DEFAULT_MIN_VALUE = 0;
+        DEFAULT_MAX_VALUE = 100;
+        DEFAULT_GRAPH_HEIGHT = dpToPx(16);
+        DEFAULT_TEXT_MARGIN_TOP = dpToPx(8);
+        DEFAULT_TEXT_SIZE = dpToPx(10);
+        DEFAULT_TEXT_COLOR = Color.BLACK;
+        DEFAULT_WARNING_TEXT = "No Data.";
+        DEFAULT_SHOW_WARNING_TEXT = false;
     }
 
     public SpectrumRangeGraph(Context context) {
