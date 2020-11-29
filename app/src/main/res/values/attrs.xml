@@ -7,6 +7,7 @@
         <attr name="srg_rangeMaxValue" format="float"/>
         <attr name="srg_rangeAvgValue" format="float"/>
         <attr name="srg_graphHeight" format="dimension"/>
+        <attr name="srg_textMarginTop" format="dimension"/>
         <attr name="srg_textSize" format="dimension"/>
         <attr name="srg_textColor" format="reference|integer"/>
         <attr name="srg_warningText" format="string"/>
