@@ -1,20 +1,3 @@
-package com.thk.spectrumrangegraph;
-
-import android.content.Context;
-import android.content.res.TypedArray;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.util.AttributeSet;
-import android.util.Log;
-import android.view.View;
-
-import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
-import androidx.core.content.res.ResourcesCompat;
-
 /**
  * SpectrumRangeGraph is showing total range, internal range defined by min and max value, average of internal range.
  *
@@ -36,6 +19,25 @@ import androidx.core.content.res.ResourcesCompat;
  * @version 1.0.0 (2020-11-29)
  * @see com.thk.spectrumrangegraph.Util
  */
+
+package com.thk.spectrumrangegraph;
+
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.util.AttributeSet;
+import android.util.Log;
+import android.view.View;
+
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
+
+
 
 public class SpectrumRangeGraph extends View {
 
@@ -107,8 +109,8 @@ public class SpectrumRangeGraph extends View {
 
         totalMinValue = attributes.getInt(R.styleable.SpectrumRangeGraph_srg_totalMinValue, DEFAULT_MIN_VALUE);
         totalMaxValue = attributes.getInt(R.styleable.SpectrumRangeGraph_srg_totalMaxValue, DEFAULT_MAX_VALUE);
-        rangeMinValue = attributes.getFloat(R.styleable.SpectrumRangeGraph_srg_rangeMinValue, DEFAULT_MIN_VALUE);
-        rangeMaxValue = attributes.getFloat(R.styleable.SpectrumRangeGraph_srg_rangeMaxValue, DEFAULT_MAX_VALUE);
+        rangeMinValue = attributes.getFloat(R.styleable.SpectrumRangeGraph_srg_rangeMinValue, totalMinValue);
+        rangeMaxValue = attributes.getFloat(R.styleable.SpectrumRangeGraph_srg_rangeMaxValue, totalMaxValue);
         rangeAvgValue = attributes.getFloat(R.styleable.SpectrumRangeGraph_srg_rangeAvgValue,
                 (rangeMinValue + rangeMaxValue)/2);
 
@@ -147,8 +149,8 @@ public class SpectrumRangeGraph extends View {
         d_rangeBox.setBounds(rect_rangeBox);
         d_rangeBox.draw(canvas);
 
-        int pointer_left = dpToPx((rangeAvgValue * graphOffset));
-        int pointer_right = dpToPx((rangeAvgValue * graphOffset) + 6);
+        int pointer_left = dpToPx((rangeAvgValue - totalMinValue) * graphOffset);
+        int pointer_right = pointer_left + dpToPx(6);
         d_avgPointer.setBounds(pointer_left, rect_spectrum.bottom - dpToPx(8), pointer_right, rect_spectrum.bottom);
         d_avgPointer.draw(canvas);
 
